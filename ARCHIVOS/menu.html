@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú - Empanadas La Mesa del Rey</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="contenedor-header">
+    <div class="logo-nombre">
+      <img src="img/WhatsApp Image 2025-07-11 at 4.55.50 PM.jpeg" alt="Logo" class="logo">
+      <h1>Empanadas La Mesa del Rey</h1>
+    </div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="menu.html">Menú</a>
+      <a href="nosotros.html">Quiénes Somos</a>
+      <a href="galeria.html">Galería</a>
+      <a href="faq.html">Preguntas</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <!-- Botones de sesión -->
+    <div class="botones-header">
+      <button class="btn-iniciar-sesion" id="btn-open-login">Iniciar sesión</button>
+      <button class="btn-registrar" id="btn-open-register">Registrarse</button>
+    </div>
+  </div>
+</header>
+
+<!-- CONTENIDO DEL MENÚ -->
+<main class="productos">
+  <section class="producto">
+    <img src="img/carne.jpg" alt="Empanada de Carne">
+    <h2>Empanada de Carne</h2>
+  </section>
+
+  <section class="producto">
+    <img src="img/pollo.jpg" alt="Empanada de Pollo">
+    <h2>Empanada de Pollo</h2>
+  </section>
+
+  <section class="producto">
+    <img src="img/queso.jpg" alt="Empanada de Queso">
+    <h2>Empanada de Queso</h2>
+  </section>
+
+  <section class="producto">
+    <img src="img/wayana.jpg" alt="Empanada Hawaiana">
+    <h2>Empanada Hawaiana</h2>
+  </section>
+</main>
+
+<!-- MODAL INICIAR SESIÓN -->
+<div id="modal-login" class="modal-login">
+  <div class="modal-login-contenido">
+    <span class="cerrar-login" data-close="login">&times;</span>
+    <h2>Iniciar sesión</h2>
+    <form id="form-login">
+      <label for="usuario-login">Nombre de usuario</label>
+      <input type="text" id="usuario-login" name="usuario" required>
+
+      <label for="pass-login">Contraseña</label>
+      <input type="password" id="pass-login" name="pass" required>
+
+      <button type="submit" class="btn-enviar-login">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL REGISTRO -->
+<div id="modal-register" class="modal-login">
+  <div class="modal-login-contenido">
+    <span class="cerrar-login" data-close="register">&times;</span>
+    <h2>Registrarse</h2>
+    <form id="form-register">
+      <label for="usuario-reg">Nombre de usuario</label>
+      <input type="text" id="usuario-reg" name="usuario" required>
+
+      <label for="correo-reg">Correo electrónico</label>
+      <input type="email" id="correo-reg" name="correo" required>
+
+      <label for="pass-reg">Contraseña</label>
+      <input type="password" id="pass-reg" name="pass" required>
+
+      <label for="confirm-pass-reg">Confirmar contraseña</label>
+      <input type="password" id="confirm-pass-reg" name="confirm-pass" required>
+
+      <label class="terminos">
+        <input type="checkbox" id="terminos" required> Acepto términos y condiciones
+      </label>
+
+      <button type="submit" class="btn-enviar-login">Crear cuenta</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 Empanadas La Mesa del Rey</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  // Abrir modales
+  document.getElementById("btn-open-login").addEventListener("click", () => {
+    document.getElementById("modal-login").style.display = "flex";
+  });
+  document.getElementById("btn-open-register").addEventListener("click", () => {
+    document.getElementById("modal-register").style.display = "flex";
+  });
+
+  // Cerrar modales
+  document.querySelectorAll(".cerrar-login").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.getElementById("modal-" + btn.dataset.close).style.display = "none";
+    });
+  });
+  window.onclick = function(event) {
+    if (event.target.classList.contains("modal-login")) {
+      event.target.style.display = "none";
+    }
+  }
+
+  // Validar login
+  document.getElementById("form-login").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Bienvenido " + document.getElementById("usuario-login").value);
+    document.getElementById("modal-login").style.display = "none";
+    this.reset();
+  });
+
+  // Validar registro
+  document.getElementById("form-register").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const pass = document.getElementById("pass-reg").value;
+    const confirm = document.getElementById("confirm-pass-reg").value;
+    if (pass !== confirm) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+    alert("Registro exitoso de " + document.getElementById("usuario-reg").value);
+    document.getElementById("modal-register").style.display = "none";
+    this.reset();
+  });
+</script>
+
+</body>
+</html>

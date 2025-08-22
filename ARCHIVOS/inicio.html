@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Empanadas La Mesa del Rey</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- Logo WhatsApp flotante -->
+<div class="whatsapp-logo">
+  <a href="https://wa.me/573118320965" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+  </a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="contenedor-header">
+    <div class="logo-nombre">
+      <img src="img/WhatsApp Image 2025-07-11 at 4.55.50 PM.jpeg" alt="Logo" class="logo">
+      <h1>Empanadas </h1>
+      <h2>La Mesa del Rey</h2>
+    </div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="menu.html">Menú</a>
+      <a href="nosotros.html">Quiénes Somos</a>
+      <a href="galeria.html">Galería</a>
+      <a href="faq.html">Preguntas</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <!-- Botones de sesión -->
+    <div class="botones-header">
+      <button class="btn-iniciar-sesion" id="btn-open-login">Iniciar sesión</button>
+      <button class="btn-registrar" id="btn-open-register">Registrarse</button>
+    </div>
+  </div>
+</header>
+
+<!-- LISTA DE PRODUCTOS -->
+<main class="productos">
+  <section class="producto">
+    <img src="img/carne.jpg" alt="Empanada de Carne">
+    <h2>Empanada de Carne</h2>
+    <p>$2.000</p>
+    <button class="boton-comprar" onclick="abrirFormulario()">Comprar</button>
+  </section>
+
+  <section class="producto">
+    <img src="img/pollo.jpg" alt="Empanada de Pollo">
+    <h2>Empanada de Pollo</h2>
+    <p>$2.000</p>
+    <button class="boton-comprar" onclick="abrirFormulario()">Comprar</button>
+  </section>
+
+  <section class="producto">
+    <img src="img/queso.jpg" alt="Empanada de Queso">
+    <h2>Empanada de Queso</h2>
+    <p>$2.000</p>
+    <button class="boton-comprar" onclick="abrirFormulario()">Comprar</button>
+  </section>
+
+  <section class="producto">
+    <img src="img/images.jpg" alt="Avena Cubana">
+    <h2>Avena Cubana</h2>
+    <p>$2.500</p>
+    <button class="boton-comprar" onclick="abrirFormulario()">Comprar</button>
+  </section>
+
+  <section class="producto">
+    <img src="img/images (1).jpg" alt="Empanadas Mixta">
+    <h2>Empanadas Mixta</h2>
+    <p>$3.500</p>
+    <button class="boton-comprar" onclick="abrirFormulario()">Comprar</button>
+  </section>
+</main>
+
+<!-- MODAL COMPRA -->
+<div id="modal-compra" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarFormulario()">&times;</span>
+    <h2>Selecciona tu pedido</h2>
+    <form id="formulario-pedido">
+      <label for="producto">Producto:</label>
+      <select id="producto" name="producto">
+        <option>Empanada de Carne</option>
+        <option>Empanada de Pollo</option>
+        <option>Empanada de Queso</option>
+        <option>Avena Cubana</option>
+        <option>Empanada Mixta</option>
+      </select>
+
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1" value="1">
+
+      <label for="observaciones">Observaciones:</label>
+      <textarea id="observaciones" name="observaciones" rows="3" placeholder="Sin ají, más salsa, etc."></textarea>
+
+      <button type="button" class="boton-comprar" onclick="mostrarQR()">Pagar con Nequi</button>
+      <button type="button" class="boton-comprar" onclick="enviarPedidoWhatsApp()">Enviar Pedido por WhatsApp</button>
+    </form>
+    <div id="qr-nequi" style="display: none;">
+      <p>Escanea este código QR con Nequi para pagar:</p>
+      <img src="img/NEQUI.jpeg" alt="Código QR Nequi">
+    </div>
+  </div>
+</div>
+
+<!-- MODAL INICIAR SESIÓN -->
+<div id="modal-login" class="modal-login">
+  <div class="modal-login-contenido">
+    <span class="cerrar-login" data-close="login">&times;</span>
+    <h2>Iniciar sesión</h2>
+    <form id="form-login">
+      <label for="usuario-login">Nombre de usuario</label>
+      <input type="text" id="usuario-login" name="usuario" required>
+
+      <label for="pass-login">Contraseña</label>
+      <input type="password" id="pass-login" name="pass" required>
+
+      <button type="submit" class="btn-enviar-login">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL REGISTRO -->
+<div id="modal-register" class="modal-login">
+  <div class="modal-login-contenido">
+    <span class="cerrar-login" data-close="register">&times;</span>
+    <h2>Registrarse</h2>
+    <form id="form-register">
+      <label for="usuario-reg">Nombre de usuario</label>
+      <input type="text" id="usuario-reg" name="usuario" required>
+
+      <label for="correo-reg">Correo electrónico</label>
+      <input type="email" id="correo-reg" name="correo" required>
+
+      <label for="pass-reg">Contraseña</label>
+      <input type="password" id="pass-reg" name="pass" required>
+
+      <label for="confirm-pass-reg">Confirmar contraseña</label>
+      <input type="password" id="confirm-pass-reg" name="confirm-pass" required>
+
+      <label class="terminos">
+        <input type="checkbox" id="terminos" required> Acepto términos y condiciones
+      </label>
+
+      <button type="submit" class="btn-enviar-login">Crear cuenta</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="text-align: center; padding: 20px; background-color: #1400cc; color: white;">
+  <p>&copy; 2025 Empanadas La Mesa del Rey</p>
+</footer>
+
+<!-- JS FUNCIONES -->
+<script>
+  // Modal compra
+  function abrirFormulario() {
+    document.getElementById('modal-compra').style.display = 'block';
+  }
+  function cerrarFormulario() {
+    document.getElementById('modal-compra').style.display = 'none';
+    document.getElementById('qr-nequi').style.display = 'none';
+  }
+  function mostrarQR() {
+    document.getElementById('qr-nequi').style.display = 'block';
+  }
+  function enviarPedidoWhatsApp() {
+    const producto = document.getElementById('producto').value;
+    const cantidad = document.getElementById('cantidad').value;
+    const observaciones = document.getElementById('observaciones').value;
+    const mensaje = `Hola, quiero pedir:\n🥟 ${producto}\n📈 Cantidad: ${cantidad}\n📝 ${observaciones}`;
+    window.open(`https://wa.me/573118320965?text=${encodeURIComponent(mensaje)}`, '_blank');
+  }
+  window.onclick = function(event) {
+    if (event.target.classList.contains("modal")) cerrarFormulario();
+    if (event.target.classList.contains("modal-login")) event.target.style.display = "none";
+  }
+
+  // Modales de sesión
+  document.getElementById("btn-open-login").addEventListener("click", () => {
+    document.getElementById("modal-login").style.display = "flex";
+  });
+  document.getElementById("btn-open-register").addEventListener("click", () => {
+    document.getElementById("modal-register").style.display = "flex";
+  });
+  document.querySelectorAll(".cerrar-login").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.getElementById("modal-" + btn.dataset.close).style.display = "none";
+    });
+  });
+
+  // Validar login
+  document.getElementById("form-login").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Bienvenido " + document.getElementById("usuario-login").value);
+    document.getElementById("modal-login").style.display = "none";
+    this.reset();
+  });
+
+  // Validar registro
+  document.getElementById("form-register").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const pass = document.getElementById("pass-reg").value;
+    const confirm = document.getElementById("confirm-pass-reg").value;
+    if (pass !== confirm) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+    alert("Registro exitoso de " + document.getElementById("usuario-reg").value);
+    document.getElementById("modal-register").style.display = "none";
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
